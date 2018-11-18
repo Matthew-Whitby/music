@@ -245,5 +245,5 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
-
+   console.log("BOO");
 }
