@@ -27,6 +27,7 @@ $("#contents").on("click",".account",function(){
 });
 $(function(){$("#nav-below").bind('inview',function(eventTrig,visible){
   if(visible)GetNextVids();
+  else;
 });});
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
