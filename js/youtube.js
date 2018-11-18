@@ -188,11 +188,11 @@ function KeepOrder(e){
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
-		document.getElementById("topScroll").addEventListener("click",DateClicked);
       for(j=1;j<totalVids;j++){
          c=document.getElementById("vid_"+j);
          SortDate(c);
 		}
+		document.getElementById("topScroll").addEventListener("click",DateClicked);
 		l=document.createElement("li");
 		l.classList.add("scrollBtn");
 		l.id="bottomScroll";

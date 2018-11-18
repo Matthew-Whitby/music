@@ -205,7 +205,18 @@ function sortDates(){
       for(j=1;j<totalVids;j++){
          c=document.getElementById("vid_"+j);
          SortDate(c);
-      }
+		}
+		document.getElementById("topScroll").addEventListener("click",DateClicked);
+		l=document.createElement("li");
+		l.classList.add("scrollBtn");
+		l.id="bottomScroll";
+		a=document.createElement("a");
+      l.appendChild(a);
+      p=document.createElement("span");
+      a.appendChild(p);
+      p.innerHTML="Bottom";
+		document.getElementById("sidenavList").appendChild(l);
+		l.addEventListener("click",DateClicked);
    }
 }
 function SortDate(c){
