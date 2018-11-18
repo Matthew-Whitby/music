@@ -25,7 +25,7 @@ $("#contents").on("click",".account",function(){
 });
 });
 });
-$("#bottomMarker").on("inview",function(eventTrig,isInView){
+$("footer").on("inview",function(eventTrig,isInView){
   if(isInView)console.log("INVIEW");
   else console.log("NOTINVIEW");
 });
