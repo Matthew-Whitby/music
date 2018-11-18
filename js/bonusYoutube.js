@@ -1,6 +1,5 @@
 var nextToken;
 function GetYoutubeData(w,callback){
-   console.log(w);
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
    let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
@@ -207,8 +206,6 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   console.log(totalVids);
-   console.log(vidTotal);
    for(i=1;i<11;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
@@ -256,9 +253,7 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
-   console.log("TRIGGERED");
    if(loadingB==false){
-      console.log("LOADING NEXT");
       loadingB=true;
       GetVidIdsUploads(()=>{
          GenerateHtml();
