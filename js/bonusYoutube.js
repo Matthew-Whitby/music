@@ -9,7 +9,7 @@ function GetYoutubeData(w,callback){
       id:v
    },function(data){
       let r=data.items[0].statistics.likeCount;
-      p="https://i.ytimg.com/vi/"+v+"/maxresdefault.jpg";
+      p="https://i.ytimg.com/vi/"+c.getElementsByClassName("movie")[0].getAttribute("data-youtube");+"/maxresdefault.jpg";
       let t=data.items[0].snippet.title;
       let v=data.items[0].statistics.viewCount;
       v=WriteNumber(v);
