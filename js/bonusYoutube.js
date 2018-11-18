@@ -107,6 +107,7 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
       maxResults:50,
+      pageToken:nextToken,
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
       nextToken=data.nextPageToken;
@@ -249,6 +250,13 @@ function SortDate(c){
 }
 function GetNextVids(){
    if(loadingB==false){
-
+      loadingB=true;
+      GetVidIdsUploads(()=>{
+         GenerateHtml();
+         GenerateIds();
+         e=GetNoVids();
+         KeepOrder(e);
+         GetChannelStats();
+         loadingB=false;});
    }
 }
