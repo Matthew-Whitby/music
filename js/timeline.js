@@ -26,11 +26,19 @@ $("#contents").on("click",".account",function(){
 });
 });
 function DateClicked(){
-  y="#y"+this.id.substring(0,4);
+  if(this.id="topScroll"){
+    window.scroll({
+      top:0,
+      left:0,
+      behavior:'smooth'
+    });
+  }else{
+    y="#y"+this.id.substring(0,4);
   window.scroll({
     top:$(y).offset().top,
     left:0,
     behavior:'smooth'
   });
+  }
 }
 
