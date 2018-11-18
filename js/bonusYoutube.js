@@ -1,5 +1,6 @@
 var nextToken;
 function GetYoutubeData(w,callback){
+   console.log(w);
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
    let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
