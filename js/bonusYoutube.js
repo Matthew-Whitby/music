@@ -1,5 +1,4 @@
 var nextToken;
-
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -206,7 +205,7 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<e;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates(t);});
+   for(i=1;i<e;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
@@ -216,7 +215,7 @@ function sortDates(){
       }
       vidTotal+=10;
       if(document.getElementById("bottomScroll")==null){
-         document.getElementById("topScroll").addEventListener("click",DateClicked);
+      document.getElementById("topScroll").addEventListener("click",DateClicked);
 		l=document.createElement("li");
 		l.classList.add("scrollBtn");
 		l.id="bottomScroll";
