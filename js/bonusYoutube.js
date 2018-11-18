@@ -103,6 +103,7 @@ $.get("https://www.googleapis.com/youtube/v3/channels",{
 );
 }
 function getPlaylistVids(pid,callback){
+   console.log(nextToken);
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
@@ -210,9 +211,7 @@ function KeepOrder(e){
 function sortDates(){
    if(vidsLoaded==totalVids-1){
       for(j=1;j<totalVids;j++){
-         console.log("OR THIS C VIDTOTAL:"+vidTotal+" j:"+j);
          c=document.getElementById("vid_"+(vidTotal+j));
-         console.log("^");
          SortDate(c);
       }
       vidTotal+=10;
@@ -232,9 +231,7 @@ function sortDates(){
    }
 }
 function SortDate(c){
-   console.log("THIS C?");
    y=c.getElementsByClassName("time")[0].innerHTML.split('/')[0];
-   console.log("^");
    s=document.getElementsByClassName("scrollBtn");
    b=false;
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
