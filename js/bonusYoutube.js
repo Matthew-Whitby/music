@@ -211,7 +211,7 @@ function sortDates(){
    if(vidsLoaded==totalVids-1){
       for(j=1;j<totalVids;j++){
          console.log("OR THIS C VIDTOTAL:"+vidTotal+" j:"+j);
-         c=document.getElementById("vid_"+vidTotal+j);
+         c=document.getElementById("vid_"+(vidTotal+j));
          console.log("^");
          SortDate(c);
       }
