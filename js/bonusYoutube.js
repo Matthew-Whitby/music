@@ -253,6 +253,7 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
+   console.log("TRIGGERED");
    if(loadingB==false){
       console.log("LOADING NEXT");
       loadingB=true;
