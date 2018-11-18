@@ -27,6 +27,7 @@ $("#contents").on("click",".account",function(){
 });
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
+  else if(this.id=="bottomScroll")topVal=document.body.scrollHeight;
   else{
     y="#y"+this.id.substring(0,4);
     topVal=$(y).offset().top;
