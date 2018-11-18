@@ -10,6 +10,7 @@ function GetYoutubeData(w,callback){
    },function(data){
       let r=data.items[0].statistics.likeCount;
       let p;
+      console.log(data.items[0].snippet.thumbnails.maxres.url);
       if(data.items[0].snippet.thumbnails.maxres.url!=undefined)
          p=data.items[0].snippet.thumbnails.maxres.url;
       let t=data.items[0].snippet.title;
