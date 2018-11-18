@@ -188,17 +188,27 @@ function KeepOrder(e){
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
+		document.getElementById("topScroll").addEventListener("click",DateClicked);
       for(j=1;j<totalVids;j++){
          c=document.getElementById("vid_"+j);
          SortDate(c);
-      }
+		}
+		l=document.createElement("li");
+		l.classList.add("scrollBtn");
+		l.id="bottomScroll";
+		a=document.createElement("a");
+      l.appendChild(a);
+      p=document.createElement("span");
+      a.appendChild(p);
+      p.innerHTML="Bottom";
+		document.getElementById("sidenavList").appendChild(l);
+		l.addEventListener("click",DateClicked);
    }
 }
 function SortDate(c){
    y=c.getElementsByClassName("time")[0].innerHTML.split('/')[0];
    s=document.getElementsByClassName("scrollBtn");
 	b=false;
-	document.getElementById("topScroll").addEventListener("click",DateClicked);
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
    if(!b){
       l=document.createElement("li");
