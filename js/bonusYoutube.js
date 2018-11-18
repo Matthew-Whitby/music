@@ -1,3 +1,4 @@
+var nextToken;
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -108,7 +109,8 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       maxResults:50,
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
-      console.log(data);
+      nextToken=data.nextPageToken;
+      console.log(nextToken);
       $.each(data.items,function(i,item){
          vidIdList.push(item.snippet.resourceId.videoId);
       })
@@ -202,11 +204,9 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   console.log(totalVids);
    for(i=1;i<e;i++)GetYoutubeData(i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
-   console.log(vidsLoaded);
    if(vidsLoaded==totalVids-1){
       for(j=1;j<totalVids;j++){
          c=document.getElementById("vid_"+j);
@@ -248,6 +248,7 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
-   console.log("BOO");
-   console.log("NU");
+   if(loadingB==false){
+
+   }
 }
