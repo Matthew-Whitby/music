@@ -32,7 +32,6 @@ function DateClicked(){
     y="#y"+this.id.substring(0,4);
     topVal=$(y).offset().top;
   }
-  console.log(topVal);
   window.scroll({
     top:topVal,
     left:0,
