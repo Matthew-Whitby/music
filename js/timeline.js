@@ -25,9 +25,9 @@ $("#contents").on("click",".account",function(){
 });
 });
 });
-$("#contents").on("inview","#nav-below",function(eventTrig,isInView){
-  if(isInView)console.log("INVIEW");
-  else console.log("NOTINVIEW");
+$("#nav-below").bind('inview',function(eventTrig,visible){
+  if(visible)console.log("HI");
+  else console.log("BYE");
 });
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
