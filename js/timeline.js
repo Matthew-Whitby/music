@@ -26,20 +26,15 @@ $("#contents").on("click",".account",function(){
 });
 });
 function DateClicked(){
-  if(this.id=="topScroll"){
-    console.log("CLICK");
-    window.scroll({
-      top:0,
-      left:0,
-      behavior:'smooth'
-    });
-  }else{
+  if(this.id=="topScroll")topVal=0;
+  else{
     y="#y"+this.id.substring(0,4);
+    topVal=$(y).offset().top;
+  }
   window.scroll({
-    top:$(y).offset().top,
+    top:topVal,
     left:0,
     behavior:'smooth'
   });
-  }
 }
 
