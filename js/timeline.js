@@ -26,7 +26,7 @@ $("#contents").on("click",".account",function(){
 });
 });
 function DateClicked(){
-  if(this.id="topScroll"){
+  if(this.id=="topScroll"){
     window.scroll({
       top:0,
       left:0,
