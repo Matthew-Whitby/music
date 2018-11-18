@@ -24,9 +24,9 @@ $("#contents").on("click",".account",function(){
   behavior:'smooth'
 });
 });
+});
 $("#bottomMarker").on("inview",function(eventTrig,isInView){
   if(isInView)GetNextVids();
-});
 });
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
