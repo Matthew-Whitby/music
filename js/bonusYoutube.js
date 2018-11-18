@@ -1,3 +1,4 @@
+var nextToken;
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -103,8 +104,10 @@ function getPlaylistVids(pid,callback){
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
+      maxResults:50,
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
+      console.log(data);
       $.each(data.items,function(i,item){
          vidIdList.push(item.snippet.resourceId.videoId);
       })
@@ -240,4 +243,7 @@ function SortDate(c){
       d.appendChild(c);
       l.addEventListener("click",DateClicked);
    }else document.getElementById("y"+y).appendChild(c);
+}
+function GetNextVids(){
+
 }

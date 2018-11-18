@@ -1,3 +1,4 @@
+var nextToken;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
 	let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
