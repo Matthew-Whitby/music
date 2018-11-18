@@ -220,7 +220,6 @@ function sortDates(){
       p.innerHTML="Bottom";
 		document.getElementById("sidenavList").appendChild(l);
       l.addEventListener("click",DateClicked);
-      document.getElementById("bottomMarker").addEventListener("inview",GetNextVids);
    }
 }
 function SortDate(c){
