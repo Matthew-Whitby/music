@@ -1,4 +1,5 @@
 var nextToken;
+
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -205,15 +206,17 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<e;i++)GetYoutubeData(i,()=>{vidsLoaded++;sortDates();});
+   for(i=1;i<e;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates(t);});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
       for(j=1;j<totalVids;j++){
-         c=document.getElementById("vid_"+j);
+         c=document.getElementById("vid_"+vidTotal+j);
          SortDate(c);
       }
-      document.getElementById("topScroll").addEventListener("click",DateClicked);
+      vidTotal+=10;
+      if(document.getElementById("bottomScroll")==null){
+         document.getElementById("topScroll").addEventListener("click",DateClicked);
 		l=document.createElement("li");
 		l.classList.add("scrollBtn");
 		l.id="bottomScroll";
@@ -224,6 +227,7 @@ function sortDates(){
       p.innerHTML="Bottom";
 		document.getElementById("sidenavList").appendChild(l);
       l.addEventListener("click",DateClicked);
+      }
    }
 }
 function SortDate(c){
@@ -256,7 +260,6 @@ function GetNextVids(){
          GenerateIds();
          e=GetNoVids();
          KeepOrder(e);
-         GetChannelStats();
          loadingB=false;});
    }
 }
