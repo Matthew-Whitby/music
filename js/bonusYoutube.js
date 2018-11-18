@@ -208,6 +208,7 @@ var totalVids;
 function KeepOrder(e){
    totalVids=e;
    console.log(totalVids);
+   console.log(vidTotal);
    for(i=1;i<e;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
