@@ -253,6 +253,7 @@ function SortDate(c){
 }
 function GetNextVids(){
    if(loadingB==false){
+      console.log("LOADING NEXT");
       loadingB=true;
       GetVidIdsUploads(()=>{
          GenerateHtml();
