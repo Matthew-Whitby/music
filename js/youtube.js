@@ -197,7 +197,8 @@ function sortDates(){
 function SortDate(c){
    y=c.getElementsByClassName("time")[0].innerHTML.split('/')[0];
    s=document.getElementsByClassName("scrollBtn");
-   b=false;
+	b=false;
+	document.getElementById("topScroll").addEventListener("click",DateClicked);
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
    if(!b){
       l=document.createElement("li");
@@ -213,6 +214,6 @@ function SortDate(c){
       document.getElementById("timeline").appendChild(d);
       d.id="y"+y;
       d.appendChild(c);
-      l.addEventListener("click",DateClicked);
+		l.addEventListener("click",DateClicked);
    }else document.getElementById("y"+y).appendChild(c);
 }
