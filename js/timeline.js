@@ -26,7 +26,8 @@ $("#contents").on("click",".account",function(){
 });
 });
 $("#bottomMarker").on("inview",function(eventTrig,isInView){
-  if(isInView)GetNextVids();
+  if(isInView)console.log("INVIEW");
+  else console.log("NOTINVIEW");
 });
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
