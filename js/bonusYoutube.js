@@ -106,7 +106,7 @@ function getPlaylistVids(pid,callback){
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
-      maxResults:50,
+      maxResults:10,
       pageToken:nextToken,
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
