@@ -9,8 +9,9 @@ function GetYoutubeData(w,callback){
       id:v
    },function(data){
       let r=data.items[0].statistics.likeCount;
-      
-      let p=data.items[0].snippet.thumbnails.maxres.url;
+      let p;
+      if(!data.items[0].snippet.thumbnails.maxres.url==undefined)
+         p=data.items[0].snippet.thumbnails.maxres.url;
       let t=data.items[0].snippet.title;
       let v=data.items[0].statistics.viewCount;
       v=WriteNumber(v);
