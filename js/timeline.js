@@ -38,5 +38,4 @@ function DateClicked(){
     behavior:'smooth'
   });
 }
-$("#bottomMarker").on("inview",GetNextVids());
 
