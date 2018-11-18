@@ -200,9 +200,11 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
+   console.log(totalVids);
    for(i=1;i<e;i++)GetYoutubeData(i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
+   console.log(vidsLoaded);
    if(vidsLoaded==totalVids-1){
       for(j=1;j<totalVids;j++){
          c=document.getElementById("vid_"+j);
