@@ -230,7 +230,9 @@ function sortDates(){
    }
 }
 function SortDate(c){
+   console.log("THIS C?");
    y=c.getElementsByClassName("time")[0].innerHTML.split('/')[0];
+   console.log("^");
    s=document.getElementsByClassName("scrollBtn");
    b=false;
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
