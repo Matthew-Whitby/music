@@ -16,8 +16,10 @@ function GetYoutubeData(w,callback){
       if(r==null)r=53;
       r=WriteNumber(r);
       c.getElementsByClassName("likes-count")[0].innerHTML=r;
-      c.getElementsByTagName("img")[0].setAttribute("data-src",p);
-      c.getElementsByTagName("img")[0].setAttribute("src",p);
+      if(p!=undefined){
+         c.getElementsByTagName("img")[0].setAttribute("data-src",p);
+         c.getElementsByTagName("img")[0].setAttribute("src",p);
+      }
       let d=data.items[0].snippet.publishedAt;
       let x=d.substring(0,10);
       let s=x.split('-');
