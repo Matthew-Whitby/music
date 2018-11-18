@@ -27,6 +27,7 @@ $("#contents").on("click",".account",function(){
 });
 function DateClicked(){
   if(this.id=="topScroll"){
+    console.log("CLICK");
     window.scroll({
       top:0,
       left:0,
