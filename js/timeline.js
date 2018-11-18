@@ -25,10 +25,10 @@ $("#contents").on("click",".account",function(){
 });
 });
 });
-$("#nav-below").bind('inview',function(eventTrig,visible){
+$(function(){$("#nav-below").bind('inview',function(eventTrig,visible){
   if(visible)console.log("HI");
   else console.log("BYE");
-});
+});});
 function DateClicked(){
   if(this.id=="topScroll")topVal=0;
   else if(this.id=="bottomScroll")topVal=$("#bottomMarker").offset().top;
