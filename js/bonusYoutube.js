@@ -209,7 +209,7 @@ function KeepOrder(e){
    totalVids=e;
    console.log(totalVids);
    console.log(vidTotal);
-   for(i=1;i<e;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
+   for(i=1;i<11;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
