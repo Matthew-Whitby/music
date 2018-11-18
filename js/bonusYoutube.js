@@ -9,6 +9,7 @@ function GetYoutubeData(w,callback){
       id:v
    },function(data){
       let r=data.items[0].statistics.likeCount;
+      let p;
       try{let p=data.items[0].snippet.thumbnails.maxres.url;}
       catch{p=undefined}
       let t=data.items[0].snippet.title;
@@ -17,7 +18,7 @@ function GetYoutubeData(w,callback){
       if(r==null)r=53;
       r=WriteNumber(r);
       c.getElementsByClassName("likes-count")[0].innerHTML=r;
-      if(p!=undefined){
+      if(p!=null){
          c.getElementsByTagName("img")[0].setAttribute("data-src",p);
          c.getElementsByTagName("img")[0].setAttribute("src",p);
       }
