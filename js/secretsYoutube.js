@@ -255,9 +255,7 @@ function GetNextVids(){
       GetVidIdsUnlisted(()=>{
 			GenerateHtml();
 			GenerateIds();
-			e=document.getElementsByClassName("vid_upload").length;
-			console.log(e);
-			KeepOrder(e);
+			KeepOrder(document.getElementsByClassName("vid_upload").length);
          loadingB=false;});
    }
 }

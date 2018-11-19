@@ -121,13 +121,6 @@ function GenerateIds(){
    let n=document.getElementsByClassName("vid_upload");
    for(i=0;i<n.length;i++)n[i].id="vid_"+(i+1);
 }
-function GetNoVids(){
-   let v=1;
-   do{let g=document.getElementById("vid_"+v);
-      if(g!=null)v++;
-      else return v;
-   }while(true);
-}
 function GenerateHtml(){
 var c=[];
 //var c=["this song hasn't been worked on in ages","tried improving mixing on vocals, with no success","tried improving mixing on vocals, with some success","tried improving mixing on vocals, with some more success","That's right, it's being remade again","what can I say, it's my favourite song","also throwing in a lot more of my own additions to the song","why did I even try uploading it, I have barely started on it","who knows if this'll get finished. Maybe it'll... disappear","one of my previous favourite songs","possibly somewhat close to being finished, and has so for half a year","far from done","tried to do some 'pop' music","tried even harder","need to fix lower notes","just realised, the videos are going to be ordered backwards so read these upside down!"];
@@ -206,7 +199,7 @@ function KeepOrder(e){
    for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
-   if(vidsLoaded==totalVids-1){
+   if(vidsLoaded==totalVids){
       for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
@@ -255,9 +248,7 @@ function GetNextVids(){
       GetVidIdsUploads(()=>{
          GenerateHtml();
          GenerateIds();
-         e=GetNoVids();
-         console.log(e);
-         KeepOrder(e);
+         KeepOrder(document.getElementsByClassName("vid_upload").length);
          loadingB=false;});
    }
 }
