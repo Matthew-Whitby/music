@@ -1,5 +1,6 @@
 var nextToken;
 var vsc=10;
+var fl=false;;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
 	let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -76,7 +77,6 @@ function GetVidIds(){
 }
 
 function GetVidIdsUnlisted(callback){
-	console.log(nextToken);
 	$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
 			part:'snippet',
 			maxResults:vsc,
@@ -85,16 +85,10 @@ function GetVidIdsUnlisted(callback){
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
 			$.each(data.items,function(i,item){
-				if(CheckVidExists(item.snippet.resourceId.videoId)){
-					vidIdList.push(item.snippet.resourceId.videoId);
-				}
+				if(CheckVidExists(item.snippet.resourceId.videoId))vidIdList.push(item.snippet.resourceId.videoId);
 			})
-			if(vidIdList.length%10==0){
-				console.log("10 vids loaded");
-				nextToken=data.nextPageToken;
-			}else vsc=vidIdList.length%10;
-			console.log("VSC = "+vsc);
-			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
+			if(vidIdList.length%10==0)nextToken=data.nextPageToken;
+			else{vsc=vidIdList.length%10;fl=true;}
 			callback();
 		});
 }
@@ -220,13 +214,11 @@ function KeepOrder(e){
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
-		console.log("ENTERED sort dates");
       for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
 		}
 		vidTotal+=vsc;
-		console.log("CURRENT TOTAL="+vidTotal);
 		if(document.getElementById("bottomScroll")==null){
 			document.getElementById("topScroll").addEventListener("click",DateClicked);
 			l=document.createElement("li");
@@ -265,19 +257,13 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
-   if(!loadingB){
-		console.log("LOADING NEXT");
+   if(!loadingB&&!fl){
       loadingB=true;
       GetVidIdsUnlisted(()=>{
-			console.log("GOT NEXT IDS");
 			GenerateHtml();
-			console.log("GENERATED NEXT HTML");
 			GenerateIds();
-			console.log("GENERATED IDS");
 			e=GetNoVids();
-			console.log("GOT NO OF VIDS");
 			KeepOrder(e);
-			console.log("KEPT ORDER");
          loadingB=false;});
    }
 }
