@@ -84,11 +84,11 @@ function GetVidIdsUnlisted(callback){
 			playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
-			
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
-			if(vidIdList.length%10!=0){
+			if(vidIdList.length%10==0){
+				console.log("10 vids loaded");
 				nextToken=data.nextPageToken;
 			}else vsc=vidIdList.length%10;
 			
