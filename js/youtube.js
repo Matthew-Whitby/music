@@ -94,6 +94,7 @@ function getPlaylistVids(pid,callback){
 			pageToken:nextToken,
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
+			nextToken=data.nextPageToken;
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
