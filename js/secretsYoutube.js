@@ -129,6 +129,7 @@ function GenerateIds(){
 	for(i=0;i<n.length;i++)n[i].id="vid_"+(i+1);
 }
 function GetNoVids(){
+	return document.getElementsByClassName("vid_upload").length;
 	let v=1;
 	do{let g=document.getElementById("vid_"+v);
 		if(g!=null)v++;
