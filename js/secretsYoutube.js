@@ -256,6 +256,7 @@ function GetNextVids(){
 			GenerateHtml();
 			GenerateIds();
 			e=document.getElementsByClassName("vid_upload").length;
+			console.log(e);
 			KeepOrder(e);
          loadingB=false;});
    }
