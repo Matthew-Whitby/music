@@ -55,8 +55,7 @@ function WriteNumber(y){
    for(x=0;x<looper;x++){
       v+=y.substring((x*3)+mod,(x*3)+mod+3);
       if(x!=looper-1)v+=",";
-   }
-   return v;
+   }return v;
 }
 function GetVidIds(){
    let vidIds;
@@ -69,8 +68,7 @@ alert("Getting vids");
    },function(data){
       let count=data.pageInfo.totalResults;
       varIds.push(count);
-      for(i=0;i<count;i++)
-      {
+      for(i=0;i<count;i++){
          document.getElementById("vid_"+(i+1)).getElementsByClassName("movie")[0].setAttribute("data-youtube",data.items[i].snippet.resourceId.videoId);
       }
    });
@@ -78,7 +76,7 @@ return vidIds;
 }
 
 function GetVidIdsUnlisted(callback){
-$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
+   $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       maxResults:vsc,
       playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
@@ -88,9 +86,7 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
          vidIdList.push(item.snippet.resourceId.videoId);
       })
       callback();
-   }
-);
-
+   });
 }
 function GetVidIdsUploads(callback){
 $.get("https://www.googleapis.com/youtube/v3/channels",{
@@ -104,7 +100,6 @@ $.get("https://www.googleapis.com/youtube/v3/channels",{
 );
 }
 function getPlaylistVids(pid,callback){
-   console.log(nextToken);
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
@@ -113,7 +108,6 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
       nextToken=data.nextPageToken;
-      console.log(nextToken);
       $.each(data.items,function(i,item){
          vidIdList.push(item.snippet.resourceId.videoId);
       })
@@ -215,7 +209,7 @@ function sortDates(){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
       }
-      vidTotal+=10;
+      vidTotal+=vsc;
       if(document.getElementById("bottomScroll")==null){
          document.getElementById("topScroll").addEventListener("click",DateClicked);
 		   l=document.createElement("li");

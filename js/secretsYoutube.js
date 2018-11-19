@@ -1,3 +1,5 @@
+var nextToken;
+var vsc=10;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
 	let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -9,15 +11,17 @@ function GetYoutubeData(w,callback){
 			id:v
 		},function(data){
 			let r=data.items[0].statistics.likeCount;
-			let p=data.items[0].snippet.thumbnails.maxres.url;
+			p="https://i.ytimg.com/vi/"+c.getElementsByClassName("movie")[0].getAttribute("data-youtube")+"/maxresdefault.jpg";
 			let t=data.items[0].snippet.title;
 			let v=data.items[0].statistics.viewCount;
 			v=WriteNumber(v);
 			if(r==null)r=53;
 			r=WriteNumber(r);
 			c.getElementsByClassName("likes-count")[0].innerHTML=r;
-			c.getElementsByTagName("img")[0].setAttribute("data-src",p);
-			c.getElementsByTagName("img")[0].setAttribute("src",p);
+			if(p!=null){
+				c.getElementsByTagName("img")[0].setAttribute("data-src",p);
+				c.getElementsByTagName("img")[0].setAttribute("src",p);
+			}
 			let d=data.items[0].snippet.publishedAt;
 			let x=d.substring(0,10);
 			let s=x.split('-');
@@ -60,13 +64,11 @@ function GetVidIds(){
 			key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
 			part:"snippet",
 			playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
-			maxResults:"50"
+			maxResults:vsc
 		},function(data){
 			let count=data.pageInfo.totalResults;
 			varIds.push(count);
-			alert("Count = "+count);
-			for(i=0;i<count;i++)
-			{
+			for(i=0;i<count;i++){
 				document.getElementById("vid_"+(i+1)).getElementsByClassName("movie")[0].setAttribute("data-youtube",data.items[i].snippet.resourceId.videoId);
 			}
 		});
@@ -76,7 +78,7 @@ function GetVidIds(){
 function GetVidIdsUnlisted(callback){
 	$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
 			part:'snippet',
-			maxResults:50,
+			maxResults:vsc,
 			playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
@@ -84,8 +86,7 @@ function GetVidIdsUnlisted(callback){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
 			callback();
-		}
-	);
+		});
 }
 function GetVidIdsUploads(callback){
 	$.get("https://www.googleapis.com/youtube/v3/channels",{
@@ -101,10 +102,12 @@ function GetVidIdsUploads(callback){
 function getPlaylistVids(pid,callback){
 	$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
 			part:'snippet',
-			maxResults:50,
+			maxResults:vsc,
 			playlistId:pid,
+			pageToken:nextToken,
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
+			nextToken=data.nextPageToken;
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
@@ -125,7 +128,7 @@ function GetNoVids(){
 }
 function GenerateHtml(){
 	//else v=["Pbd-a5jr5Ek","zWYzCB4p39s","76_2FTKTYNo","QcGgb8fxGQQ","bkvrYMAvWEk","Ygzm_jtGCbY","3rbkk8X13L4","XLLh5A-JyGk","WEHL9Tks46U","I8CUyA8xW9I","BNe7n-FqYw8","sCEjAnCjYbw","aEehpv70ePY","VYpDfjoLEJo","Mra8s9l_tDI","ESKmA6sbLmI"];
-	var c=["this song hasn't been worked on in ages","tried improving mixing on vocals, with no success","tried improving mixing on vocals, with some success","tried improving mixing on vocals, with some more success","That's right, it's being remade again","what can I say, it's my favourite song","also throwing in a lot more of my own additions to the song","why did I even try uploading it, I have barely started on it","who knows if this'll get finished. Maybe it'll... disappear","one of my previous favourite songs","possibly somewhat close to being finished, and has so for half a year","far from done","tried to do some 'pop' music","tried even harder","need to fix lower notes","just realised, the videos are going to be ordered backwards so read these upside down!"];
+	var c=["this song hasn't been worked on in ages","tried improving mixing on vocals, with no success","tried improving mixing on vocals, with some success","tried improving mixing on vocals, with some more success","That's right, it's being remade again","what can I say, it's my favourite song","also throwing in a lot more of my own additions to the song","why did I even try uploading it, I have barely started on it","who knows if this'll get finished. Maybe it'll... disappear","one of my previous favourite songs","possibly somewhat close to being finished, and has so for half a year","far from done","tried to do some 'pop' music","tried even harder","need to fix lower notes","just realised, the videos are going to be ordered backwards so read these upside down!","Super piano Medley, currently at 21/~63 songs, just checking sound."];
 	let parent=document.getElementById("timeline");
 	for(var i=vidIdList.length-1;i>-1;i--){
 		let upload=document.createElement("section");
@@ -198,25 +201,28 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<e;i++)GetYoutubeData(i,()=>{vidsLoaded++;sortDates();});
+   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
-      for(j=1;j<totalVids;j++){
-         c=document.getElementById("vid_"+j);
+      for(j=1;j<(vsc+1);j++){
+         c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
 		}
-		document.getElementById("topScroll").addEventListener("click",DateClicked);
-		l=document.createElement("li");
-		l.classList.add("scrollBtn");
-		l.id="bottomScroll";
-		a=document.createElement("a");
-      l.appendChild(a);
-      p=document.createElement("span");
-      a.appendChild(p);
-      p.innerHTML="Bottom";
-		document.getElementById("sidenavList").appendChild(l);
-		l.addEventListener("click",DateClicked);
+		vidTotal+=vsc;
+		if(document.getElementById("bottomScroll")==null){
+			document.getElementById("topScroll").addEventListener("click",DateClicked);
+			l=document.createElement("li");
+			l.classList.add("scrollBtn");
+			l.id="bottomScroll";
+			a=document.createElement("a");
+      	l.appendChild(a);
+      	p=document.createElement("span");
+      	a.appendChild(p);
+      	p.innerHTML="Bottom";
+			document.getElementById("sidenavList").appendChild(l);
+			l.addEventListener("click",DateClicked);
+		}
    }
 }
 function SortDate(c){
@@ -240,4 +246,15 @@ function SortDate(c){
       d.appendChild(c);
       l.addEventListener("click",DateClicked);
    }else document.getElementById("y"+y).appendChild(c);
+}
+function GetNextVids(){
+   if(loadingB==false){
+      loadingB=true;
+      GetVidIdsUploads(()=>{
+         GenerateHtml();
+         GenerateIds();
+         e=GetNoVids();
+         KeepOrder(e);
+         loadingB=false;});
+   }
 }
