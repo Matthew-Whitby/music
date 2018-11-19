@@ -209,7 +209,7 @@ function KeepOrder(e){
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
-		console.log("ENTERED");
+		console.log("ENTERED sort dates");
       for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
