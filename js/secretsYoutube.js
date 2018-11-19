@@ -79,9 +79,11 @@ function GetVidIdsUnlisted(callback){
 	$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
 			part:'snippet',
 			maxResults:vsc,
+			pageToken:nextToken,
 			playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
+			nextToken=data.nextPageToken;
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
@@ -250,7 +252,7 @@ function SortDate(c){
 function GetNextVids(){
    if(loadingB==false){
       loadingB=true;
-      GetVidIdsUploads(()=>{
+      GetVidIdsUnlisted(()=>{
          GenerateHtml();
          GenerateIds();
          e=GetNoVids();
