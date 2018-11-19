@@ -84,10 +84,14 @@ function GetVidIdsUnlisted(callback){
 			playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
-			nextToken=data.nextPageToken;
+			
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
+			if(vidIdList%10){
+				nextToken=data.nextPageToken;
+			}else vsc=vidIdList%10;
+			
 			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
 			callback();
 		});
