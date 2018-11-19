@@ -88,6 +88,7 @@ function GetVidIdsUnlisted(callback){
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
+			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
 			callback();
 		});
 }
@@ -254,12 +255,18 @@ function SortDate(c){
 }
 function GetNextVids(){
    if(!loadingB){
+		console.log("LOADING NEXT");
       loadingB=true;
       GetVidIdsUnlisted(()=>{
-         GenerateHtml();
-         GenerateIds();
-         e=GetNoVids();
-         KeepOrder(e);
+			console.log("GOT NEXT IDS");
+			GenerateHtml();
+			console.log("GENERATED NEXT HTML");
+			GenerateIds();
+			console.log("GENERATED IDS");
+			e=GetNoVids();
+			console.log("GOT NO OF VIDS");
+			KeepOrder(e);
+			console.log("KEPT ORDER");
          loadingB=false;});
    }
 }
