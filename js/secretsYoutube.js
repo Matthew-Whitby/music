@@ -203,15 +203,17 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
+   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;if(vidsLoaded==totalVids-1)sortDates();});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
+		console.log("ENTERED");
       for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
 		}
 		vidTotal+=vsc;
+		console.log("CURRENT TOTAL="+vidTotal);
 		if(document.getElementById("bottomScroll")==null){
 			document.getElementById("topScroll").addEventListener("click",DateClicked);
 			l=document.createElement("li");
@@ -253,7 +255,6 @@ function GetNextVids(){
    if(!loadingB){
       loadingB=true;
       GetVidIdsUnlisted(()=>{
-			console.log("LOADING");
          GenerateHtml();
          GenerateIds();
          e=GetNoVids();
