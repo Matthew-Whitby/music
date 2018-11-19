@@ -85,7 +85,10 @@ function GetVidIdsUnlisted(callback){
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
 			$.each(data.items,function(i,item){
-				vidIdList.push(item.snippet.resourceId.videoId);
+				if(!CheckVidExists(item.snippet.resourceId.videoId)){
+					vidIdList.push(item.snippet.resourceId.videoId);
+				}
+				
 			})
 			if(vidIdList.length%10==0){
 				console.log("10 vids loaded");
@@ -95,6 +98,11 @@ function GetVidIdsUnlisted(callback){
 			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
 			callback();
 		});
+}
+function CheckVidExists(id){
+	for(i=0;i<vidIdList.length;i++){
+		if(id==vidIdList[i])return false;
+	}return true;
 }
 function GetVidIdsUploads(callback){
 	$.get("https://www.googleapis.com/youtube/v3/channels",{
