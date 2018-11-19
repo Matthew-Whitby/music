@@ -250,7 +250,7 @@ function SortDate(c){
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
-   if(loadingB==false){
+   if(!loadingB){
       loadingB=true;
       GetVidIdsUploads(()=>{
          GenerateHtml();
