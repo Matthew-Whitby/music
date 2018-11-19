@@ -203,10 +203,10 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;if(vidsLoaded==totalVids-1)sortDates();});
+   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;if(vidsLoaded==totalVids)sortDates();});
 }
 function sortDates(){
-   if(vidsLoaded==totalVids-1){
+   if(vidsLoaded==totalVids){
       for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
