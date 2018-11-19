@@ -88,7 +88,7 @@ function GetVidIdsUnlisted(callback){
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
-			if(vidIdList%10){
+			if(vidIdList%10!=0){
 				nextToken=data.nextPageToken;
 			}else vsc=vidIdList%10;
 			
