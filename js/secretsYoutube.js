@@ -76,6 +76,7 @@ function GetVidIds(){
 }
 
 function GetVidIdsUnlisted(callback){
+	console.log(nextToken);
 	$.get("https://www.googleapis.com/youtube/v3/playlistItems",{
 			part:'snippet',
 			maxResults:vsc,
