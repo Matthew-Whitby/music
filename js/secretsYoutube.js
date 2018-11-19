@@ -85,10 +85,9 @@ function GetVidIdsUnlisted(callback){
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
 			$.each(data.items,function(i,item){
-				if(!CheckVidExists(item.snippet.resourceId.videoId)){
+				if(CheckVidExists(item.snippet.resourceId.videoId)){
 					vidIdList.push(item.snippet.resourceId.videoId);
 				}
-				
 			})
 			if(vidIdList.length%10==0){
 				console.log("10 vids loaded");
