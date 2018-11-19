@@ -256,6 +256,7 @@ function GetNextVids(){
          GenerateHtml();
          GenerateIds();
          e=GetNoVids();
+         console.log(e);
          KeepOrder(e);
          loadingB=false;});
    }
