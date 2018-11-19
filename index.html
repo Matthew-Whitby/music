@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Whitbyfish Music</title>
 	<link rel="shortcut icon" href="/css/img/whitby_icon.ico">
-	<script type="text/javascript">var vidIdList=[];</script>
+	<script type="text/javascript">var vidIdList=[];var loadingB=true;var vidTotal=0;</script>
 	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="/js/jquery/jquery.inview.min.js"></script>
 	<script src="/js/common.min.js"></script>
@@ -51,7 +51,6 @@
 				</article>
 
 			<div id="nav-below">
-				<a href="/page/2/" >Next Page &raquo;</a>
 			</div>
 			<footer id="bottomMarker">
 			</footer>
@@ -65,6 +64,6 @@ var infinite_scroll="{\"loading\":{\"msgText\":\"<img alt=\\\"\\\" src=\\\"http:
 <script type='text/javascript' src='/js/jquery/jquery.infinitescroll.js?ver=2.6.1'></script>
 <script type="text/javascript">// Because the `wp_localize_script` method makes everything a string
 infinite_scroll=jQuery.parseJSON(infinite_scroll);jQuery(infinite_scroll.contentSelector).infinitescroll(infinite_scroll,function(newElements,data,url){eval(infinite_scroll.callback);});</script>
-<script type="text/javascript">window.onload=GetVidIdsUploads(()=>{GenerateHtml();GenerateIds();e=GetNoVids();KeepOrder(e);GetChannelStats();MoveSubscribe();});</script>
+<script type="text/javascript">window.onload=GetVidIdsUploads(()=>{GenerateHtml();GenerateIds();KeepOrder(document.getElementsByClassName("vid_upload").length);GetChannelStats();MoveSubscribe();loadingB=false;});</script>
 </body>
 </html>
