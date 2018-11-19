@@ -88,9 +88,9 @@ function GetVidIdsUnlisted(callback){
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
-			if(vidIdList%10!=0){
+			if(vidIdList.length%10!=0){
 				nextToken=data.nextPageToken;
-			}else vsc=vidIdList%10;
+			}else vsc=vidIdList.length%10;
 			
 			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
 			callback();
