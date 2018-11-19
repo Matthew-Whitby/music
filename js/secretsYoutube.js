@@ -93,7 +93,7 @@ function GetVidIdsUnlisted(callback){
 				console.log("10 vids loaded");
 				nextToken=data.nextPageToken;
 			}else vsc=vidIdList.length%10;
-			
+			console.log("VSC = "+vsc);
 			console.log("VIDIDLIST LENGTH:"+vidIdList.length);
 			callback();
 		});
