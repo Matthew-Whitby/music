@@ -1,4 +1,5 @@
 var nextToken;
+var vsc=10;
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
    let v=c.getElementsByClassName("movie")[0].getAttribute("data-youtube");
@@ -64,7 +65,7 @@ alert("Getting vids");
       key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
       part:"snippet",
       playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
-      maxResults:"50"
+      maxResults:vsc
    },function(data){
       let count=data.pageInfo.totalResults;
       varIds.push(count);
@@ -79,7 +80,7 @@ return vidIds;
 function GetVidIdsUnlisted(callback){
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
-      maxResults:50,
+      maxResults:vsc,
       playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
@@ -107,7 +108,7 @@ function getPlaylistVids(pid,callback){
 $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       part:'snippet',
       playlistId:pid,
-      maxResults:10,
+      maxResults:vsc,
       pageToken:nextToken,
       key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
    },function(data){
@@ -206,11 +207,11 @@ var vidsLoaded=0;
 var totalVids;
 function KeepOrder(e){
    totalVids=e;
-   for(i=1;i<11;i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
+   for(i=1;i<(vsc+1);i++)GetYoutubeData(vidTotal+i,()=>{vidsLoaded++;sortDates();});
 }
 function sortDates(){
    if(vidsLoaded==totalVids-1){
-      for(j=1;j<11;j++){
+      for(j=1;j<(vsc+1);j++){
          c=document.getElementById("vid_"+(vidTotal+j));
          SortDate(c);
       }
