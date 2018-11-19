@@ -253,6 +253,7 @@ function GetNextVids(){
    if(!loadingB){
       loadingB=true;
       GetVidIdsUnlisted(()=>{
+			console.log("LOADING");
          GenerateHtml();
          GenerateIds();
          e=GetNoVids();
