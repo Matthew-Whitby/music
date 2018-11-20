@@ -238,3 +238,12 @@ function GetNextVids(){
          loadingB=false;});
    }
 }
+function ChannelSubscribe(){
+	$.getJSON("https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.subscriptions.insert",{
+		key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+		part:"snippet",
+		id:"UCNGt4x8CYzKLCUGlfe-TQkg"
+	},function(data){
+		console.log(data);
+	});
+}
