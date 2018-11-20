@@ -214,6 +214,7 @@ function sortDates(){
 		vidTotal+=vsc;
 		if(document.getElementById("bottomScroll")==null){
 			document.getElementById("topScroll").addEventListener("click",DateClicked);
+			document.getElementById("subscribe_button").addEventListener("click",ChannelSubscribe);
 			l=document.createElement("li");
 			l.classList.add("scrollBtn");
 			l.id="bottomScroll";
