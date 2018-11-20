@@ -192,6 +192,7 @@ function sortDates(){
 		}
 		vidTotal+=vsc;
       if(document.getElementById("bottomScroll")==null){
+			document.getElementById("subscribe_button").addEventListener("click",ChannelSubscribe);
 			document.getElementById("topScroll").addEventListener("click",DateClicked);
 			l=document.createElement("li");
 			l.classList.add("scrollBtn");
