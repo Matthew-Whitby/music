@@ -1,4 +1,4 @@
-var nextToken;
+var nt;
 var vsc=10;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
@@ -51,8 +51,6 @@ function WriteNumber(y){
    let looper=Math.floor(y.length/3);
 	let mod=y.length%3;
 	v=mod?y.substring(0,mod)+",":"";
-   /*if(mod)v=y.substring(0,mod)+",";
-   else v="";*/
    for(x=0;x<looper;x++){
       v+=y.substring((x*3)+mod,(x*3)+mod+3);
       if(x!=looper-1)v+=",";
@@ -92,10 +90,10 @@ function getPlaylistVids(pid,callback){
 			part:'snippet',
 			maxResults:vsc,
 			playlistId:pid,
-			pageToken:nextToken,
+			pageToken:nt,
 			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
 		},function(data){
-			nextToken=data.nextPageToken;
+			nt=data.nextPageToken;
 			$.each(data.items,function(i,item){
 				vidIdList.push(item.snippet.resourceId.videoId);
 			})
