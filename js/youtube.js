@@ -49,9 +49,10 @@ function GetChannelStats(){
 function WriteNumber(y){
    if(y<1000)return y;
    let looper=Math.floor(y.length/3);
-   let mod=y.length%3;
-   if(mod)v=y.substring(0,mod)+",";
-   else v="";
+	let mod=y.length%3;
+	v=mod?y.substring(0,mod)+",":"";
+   /*if(mod)v=y.substring(0,mod)+",";
+   else v="";*/
    for(x=0;x<looper;x++){
       v+=y.substring((x*3)+mod,(x*3)+mod+3);
       if(x!=looper-1)v+=",";
