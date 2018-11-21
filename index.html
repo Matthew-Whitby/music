@@ -56,7 +56,7 @@
 var infinite_scroll="{\"loading\":{\"msgText\":\"<img alt=\\\"\\\" src=\\\"http:\\\/\\\/music.matthewwhitby.co.uk\\\/testsite\\\/css\\\/img\\\/loader.gif\\\" class=\\\"alignnone\\\" width=\\\"220\\\" height=\\\"19\\\" \\\/><img alt=\\\"\\\" src=\\\"http:\\\/\\\/music.matthewwhitby.co.uk\\\/testsite\\\/css\\\/img\\\/loader.gif\\\" class=\\\"alignnone\\\" width=\\\"220\\\" height=\\\"19\\\" \\\/><img alt=\\\"\\\" src=\\\"http:\\\/\\\/music.matthewwhitby.co.uk\\\/testsite\\\/css\\\/img\\\/loader.gif\\\" class=\\\"alignnone\\\" width=\\\"220\\\" height=\\\"19\\\" \\\/>\",\"finishedMsg\":\"<em>WIP<\\\/em>\",\"img\":\"http:\\\/\\\/music.matthewwhitby.co.uk\\\/testsite\\\/css\\\/img\\\/loader.gif\"},\"nextSelector\":\"#nav-below a:first\",\"navSelector\":\"#nav-below\",\"itemSelector\":\".card\",\"contentSelector\":\"#timeline\",\"debug\":false,\"behavior\":\"\",\"callback\":\"\"}";
 </script>
 <script type='text/javascript' src='/js/jquery/jquery.infinitescroll.js?ver=2.6.1'></script>
-<script type="text/javascript">// Because the `wp_localize_script` method makes everything a string
+<script type="text/javascript">
 infinite_scroll=jQuery.parseJSON(infinite_scroll);jQuery(infinite_scroll.contentSelector).infinitescroll(infinite_scroll,function(newElements,data,url){eval(infinite_scroll.callback);});</script>
 <script type="text/javascript">window.onload=GetVidIdsUploads(()=>{GenerateHtml();GenerateIds();KeepOrder(document.getElementsByClassName("vid_upload").length);GetChannelStats();MoveSubscribe();loadingB=false;});</script>
 </body>
