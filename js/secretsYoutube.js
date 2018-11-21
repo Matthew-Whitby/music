@@ -268,4 +268,5 @@ function ChannelSubscribe(){
 		{'snippet.resourceId.kind':'youtube#channel',
 		'snippet.resourceId.channelId':'UCNGt4x8CYzKLCUGlfe-TQkg'
 	});
+	console.log("POSTED");
 }
