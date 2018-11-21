@@ -263,7 +263,8 @@ function GetNextVids(){
 function ChannelSubscribe(){
 	console.log("SUBSCRIBING");
 	$.post("https://www.googleapis.com/youtube/v3/subscriptions",
-		{'part':"snippet"},
-		{'snippet.resourceId.kind':'youtube#channel',
-		'snippet.resourceId.channelId':'UCNGt4x8CYzKLCUGlfe-TQkg'});
+	   {part:"snippet",
+		'snippet.resourceId.kind':'youtube#channel',
+		'snippet.resourceId.channelId':'UCNGt4x8CYzKLCUGlfe-TQkg'
+	});
 }
