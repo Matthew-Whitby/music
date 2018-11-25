@@ -242,7 +242,7 @@ function SortDate(c){
       d.id="y"+y;
       d.appendChild(c);
       l.addEventListener("click",DateClicked);
-      if(sb!=null)document.appendChild(sb);
+      if(sb!=null)document.getElementById("sidenavList").appendChild(sb);
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
@@ -251,7 +251,7 @@ function GetNextVids(){
       GetVidIdsUploads(()=>{
          GenerateHtml();
          GenerateIds();
-         KeepOrder(document.getElementById("sidenavList").getElementsByClassName("vid_upload").length);
+         KeepOrder(document.getElementsByClassName("vid_upload").length);
          loadingB=false;});
    }
 }
