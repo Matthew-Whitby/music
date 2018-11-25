@@ -235,6 +235,8 @@ function SortDate(c){
    b=false;
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
    if(!b){
+		sb=document.getElementById("bottomScroll");
+      if(sb!=null)document.getElementById("sidenavList").removeChild(sb);
       l=document.createElement("li");
       l.classList.add("scrollBtn");
       l.id=y+"Scroll";
@@ -248,7 +250,8 @@ function SortDate(c){
       document.getElementById("timeline").appendChild(d);
       d.id="y"+y;
       d.appendChild(c);
-      l.addEventListener("click",DateClicked);
+		l.addEventListener("click",DateClicked);
+		if(sb!=null)document.getElementById("sidenavList").appendChild(sb);
    }else document.getElementById("y"+y).appendChild(c);
 }
 function GetNextVids(){
