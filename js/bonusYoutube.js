@@ -227,7 +227,7 @@ function SortDate(c){
    for(i=0;i<s.length;i++)if(s[i].id.substring(0,4)==y){b=true;break;}
    if(!b){
       sb=document.getElementById("bottomScroll");
-      if(sb!=null)document.removeChild(sb);
+      if(sb!=null)document.getElementById("sidenavList").removeChild(sb);
       l=document.createElement("li");
       l.classList.add("scrollBtn");
       l.id=y+"Scroll";
@@ -251,7 +251,7 @@ function GetNextVids(){
       GetVidIdsUploads(()=>{
          GenerateHtml();
          GenerateIds();
-         KeepOrder(document.getElementsByClassName("vid_upload").length);
+         KeepOrder(document.getElementById("sidenavList").getElementsByClassName("vid_upload").length);
          loadingB=false;});
    }
 }
