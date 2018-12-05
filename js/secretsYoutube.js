@@ -11,6 +11,7 @@ function GetYoutubeData(w,callback){
 			part:"statistics,snippet",
 			id:v
 		},function(data){
+			console.log(data);
 			let r=data.items[0].statistics.likeCount;
 			p="https://i.ytimg.com/vi/"+c.getElementsByClassName("movie")[0].getAttribute("data-youtube")+"/maxresdefault.jpg";
 			let t=data.items[0].snippet.title;
