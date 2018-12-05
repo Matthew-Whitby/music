@@ -32,7 +32,7 @@ function GetYoutubeData(w,callback){
 			c.getElementsByClassName("time")[0].innerHTML=z;
 			c.getElementsByClassName("vid_title")[0].innerHTML=t;
 			c.getElementsByClassName("views")[0].innerHTML=v;
-			c.getElementsByClassName("comment")[0].innerHTML=co;
+			c.getElementsByClassName("comment")[0].innerHTML+=co;
 			callback();
 		});
 }
@@ -199,7 +199,7 @@ function GenerateHtml(){
 		comment.appendChild(name1);
 		name1.classList.add("name");
 		name1.innerHTML="Whitbyfish";
-		comment.innerHTML=" ";
+		//comment.innerHTML=" ";
 	}
 }
 var vidsLoaded=0;
