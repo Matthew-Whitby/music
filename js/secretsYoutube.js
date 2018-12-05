@@ -28,11 +28,10 @@ function GetYoutubeData(w,callback){
 			let x=d.substring(0,10);
 			let s=x.split('-');
 			let z=s[0]+"/"+s[1]+"/"+s[2];
-			let co=data.items[0].snippet.description;
 			c.getElementsByClassName("time")[0].innerHTML=z;
 			c.getElementsByClassName("vid_title")[0].innerHTML=t;
 			c.getElementsByClassName("views")[0].innerHTML=v;
-			c.getElementsByClassName("comment")[0].innerHTML+=co;
+			c.getElementsByClassName("comment")[0].innerHTML+=data.items[0].snippet.description;
 			callback();
 		});
 }
@@ -132,8 +131,6 @@ function GenerateIds(){
 	for(i=0;i<n.length;i++)n[i].id="vid_"+(i+1);
 }
 function GenerateHtml(){
-	//else v=["Pbd-a5jr5Ek","zWYzCB4p39s","76_2FTKTYNo","QcGgb8fxGQQ","bkvrYMAvWEk","Ygzm_jtGCbY","3rbkk8X13L4","XLLh5A-JyGk","WEHL9Tks46U","I8CUyA8xW9I","BNe7n-FqYw8","sCEjAnCjYbw","aEehpv70ePY","VYpDfjoLEJo","Mra8s9l_tDI","ESKmA6sbLmI"];
-	var c=["this song hasn't been worked on in ages","tried improving mixing on vocals, with no success","tried improving mixing on vocals, with some success","tried improving mixing on vocals, with some more success","That's right, it's being remade again","what can I say, it's my favourite song","also throwing in a lot more of my own additions to the song","why did I even try uploading it, I have barely started on it","who knows if this'll get finished. Maybe it'll... disappear","one of my previous favourite songs","possibly somewhat close to being finished, and has so for half a year","far from done","tried to do some 'pop' music","tried even harder","need to fix lower notes","just realised, the videos are going to be ordered backwards so read these upside down!","Super piano Medley, currently at 21/~63 songs, just checking sound.","Lower Test","Higher Test","RIP","how do you do electronic music?","Testing new piano sound","Time to work out some Eurobeat","Testing how much Youtube normalizes the synths","Further Synth tests, also a bit of guitar","Potentially improved bass","Fast synth time!!","Added strings","Further improvements to synths","Started a bit of mixing and added/improved synths","Tried throwing the vocals into it"];
 	let parent=document.getElementById("timeline");
 	for(i=vidTotal;i<vidIdList.length;i++){
 		let upload=document.createElement("section");
@@ -199,7 +196,6 @@ function GenerateHtml(){
 		comment.appendChild(name1);
 		name1.classList.add("name");
 		name1.innerHTML="Whitbyfish";
-		//comment.innerHTML=" ";
 	}
 }
 var vidsLoaded=0;
