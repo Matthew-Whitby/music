@@ -28,9 +28,11 @@ function GetYoutubeData(w,callback){
 			let x=d.substring(0,10);
 			let s=x.split('-');
 			let z=s[0]+"/"+s[1]+"/"+s[2];
+			let co=data.items[0].snippet.description;
 			c.getElementsByClassName("time")[0].innerHTML=z;
 			c.getElementsByClassName("vid_title")[0].innerHTML=t;
 			c.getElementsByClassName("views")[0].innerHTML=v;
+			c.getElementsByClassName("comment")[0].innerHTML=co;
 			callback();
 		});
 }
@@ -198,7 +200,7 @@ function GenerateHtml(){
 		comment.appendChild(name1);
 		name1.classList.add("name");
 		name1.innerHTML="Whitbyfish";
-		comment.innerHTML+=c[i];
+		//comment.innerHTML+=c[i];
 	}
 }
 var vidsLoaded=0;
