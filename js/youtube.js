@@ -67,9 +67,8 @@ function GetVidIds(){
 		},function(data){
 			let count=data.pageInfo.totalResults;
 			varIds.push(count);
-			for(i=0;i<count;i++){
+			for(i=0;i<count;i++)
 				document.getElementById("vid_"+(i+1)).getElementsByClassName("movie")[0].setAttribute("data-youtube",data.items[i].snippet.resourceId.videoId);
-			}
 		});
 	return vidIds;
 }
@@ -106,7 +105,6 @@ function GenerateIds(){
 	for(i=0;i<n.length;i++)n[i].id="vid_"+(i+1);
 }
 function GenerateHtml(){
-	//var v=["FnAmgwiHZtg","KRybbNpSHwU","POFLrlcnAdk","qDhF9L5zFnI","8JlW8kyoBgY","p-x5uukSQUo","MR2FZi92BMY","_mn4Jh3j_zk","eCwiCq71lCk","GV8tRmnfNRo","aRP9l_sGdbo","0RLMAoanOVE","5DD3CrZBLm4","SzL3_moFeWw","nX_lsrqgrpU","D68FyZixZ3M","zVtLwaVmVfI","PWSdtbl4DsM","Cyh0q0GfyCg","EW3ESox9A6M","SkyL8KUQNZ4","LYrHuZ3yzdw","5ZG5WcihXNg","Zn7rbfNBYwA","3Lu1bs2APDU"];
 	let c=["First Cover！Recorded with ancient technology.","First Sakura Gakuin cover, pretty easy stuff! Been aaaaaaages since the last cover.","A little acoustic cover, pretty bad timing though♪","A cheeky little piano cover of a pretty good, but underrated japanese band.","First Full instrumental cover!!","2 covers in one day, What's going on?!","My favourite cover to date♪","A bit more Walküre","Second piano cover, yay!","My favourite song from Mrs GREEN APPLE!","A cheeky little anime intro!","Piano cover of Momoiro Clover Z's latest song!","Even more Momoiro Clover Z","Vocaloid Singing hashire","Rolling Girl","Kinyoubi no Ohayou instrmental","Kinyoubi no Ohayou trumpet","Kinyoubi no Ohayou Gumi (meant to be sung by a male)","Kinyoubi no Ohayou Gumi Another Story","why did this get 2k views?","acoustic cover thing","probably the best mixed thing I have made thus far","thought the vocaloid sounded slightly like the original singer so made this","don't really know why I covered this song","fully instrumental fast song","Piano cover of a fairly unknown song"];
 	c.reverse();
 	var parent=document.getElementById("timeline");
