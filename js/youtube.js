@@ -1,4 +1,4 @@
-var nt;
+var nt,key="AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw";
 var vsc=10;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
@@ -6,7 +6,7 @@ function GetYoutubeData(w,callback){
 	let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
 		if(matches)v=matches[1];
 		$.getJSON("https://www.googleapis.com/youtube/v3/videos",{
-			key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+			key:key,
 			part:"statistics,snippet",
 			id:v
 		},function(data){
@@ -34,7 +34,7 @@ function GetYoutubeData(w,callback){
 }
 function GetChannelStats(){
 	$.getJSON("https://www.googleapis.com/youtube/v3/channels",{
-		key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+		key:key,
 		part:"statistics",
 		id:"UCNGt4x8CYzKLCUGlfe-TQkg"
 	},function(data){
@@ -60,7 +60,7 @@ function GetVidIds(){
 	let vidIds;
 	alert("Getting vids");
 		$.getJSON("https://www.googleapis.com/youtube/v3/playlistItems",{
-			key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+			key:key,
 			part:"snippet",
 			playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
 			maxResults:vsc
@@ -77,7 +77,7 @@ function GetVidIdsUploads(callback){
 	$.get("https://www.googleapis.com/youtube/v3/channels",{
 			part: 'contentDetails',
 			id: "UCNGt4x8CYzKLCUGlfe-TQkg",
-			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+			key:key
 		},function(data){
 			pid=data.items[0].contentDetails.relatedPlaylists.uploads;
       	getPlaylistVids(pid,()=>callback());
@@ -90,7 +90,7 @@ function getPlaylistVids(pid,callback){
 			maxResults:vsc,
 			playlistId:pid,
 			pageToken:nt,
-			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+			key:key
 		},function(data){
 			nt=data.nextPageToken;
 			$.each(data.items,function(i,item){
