@@ -1,4 +1,4 @@
-var nt,key="AIzaSyAsUlt3w6LQGDarCRfcciMRQc_UCcdkqGU";
+var nt,key="AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0";
 var vsc=10;
 function GetYoutubeData(w,callback){
 	let c=document.getElementById("vid_"+w);
