@@ -7,7 +7,7 @@ function GetYoutubeData(w,callback){
 	let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
 		if(matches)v=matches[1];
 		$.getJSON("https://www.googleapis.com/youtube/v3/videos",{
-			key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+			key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
 			part:"statistics,snippet",
 			id:v
 		},function(data){
@@ -36,7 +36,7 @@ function GetYoutubeData(w,callback){
 }
 function GetChannelStats(){
 	$.getJSON("https://www.googleapis.com/youtube/v3/channels",{
-		key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+		key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
 		part:"statistics",
 		id:"UCNGt4x8CYzKLCUGlfe-TQkg"
 	},function(data){
@@ -63,7 +63,7 @@ function GetVidIds(){
 	let vidIds;
 	alert("Getting vids");
 		$.getJSON("https://www.googleapis.com/youtube/v3/playlistItems",{
-			key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+			key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
 			part:"snippet",
 			playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
 			maxResults:vsc
@@ -83,7 +83,7 @@ function GetVidIdsUnlisted(callback){
 			maxResults:vsc,
 			pageToken:nextToken,
 			playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
-			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+			key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
 		},function(data){
 			$.each(data.items,function(i,item){
 				if(CheckVidExists(item.snippet.resourceId.videoId))vidIdList.push(item.snippet.resourceId.videoId);
@@ -102,7 +102,7 @@ function GetVidIdsUploads(callback){
 	$.get("https://www.googleapis.com/youtube/v3/channels",{
 			part: 'contentDetails',
 			id: "UCNGt4x8CYzKLCUGlfe-TQkg",
-			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+			key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
 		},function(data){
 			pid=data.items[0].contentDetails.relatedPlaylists.uploads;
       	getPlaylistVids(pid,()=>callback());
@@ -115,7 +115,7 @@ function getPlaylistVids(pid,callback){
 			maxResults:vsc,
 			playlistId:pid,
 			pageToken:nextToken,
-			key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+			key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
 		},function(data){
 			nextToken=data.nextPageToken;
 			$.each(data.items,function(i,item){
