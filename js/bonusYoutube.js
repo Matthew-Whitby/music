@@ -1,4 +1,4 @@
-var nextToken,wnextToken;
+var nextToken,wnextToken,prevwToken;
 var key="AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0";
 var vsc=10;
 function GetYoutubeData(w,callback){
@@ -69,7 +69,11 @@ function GetWasutaVidTitles(callback){
    }
 );
 }
+function GetTitles(){
+   GetWasutaVidTitles(()=>{if(wnextToken!=prevwToken)GetTitles()});
+}
 function getWasutaPlaylistVids(pid,callback){
+   prevwToken=wnextToken;
    $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
          part:'snippet',
          playlistId:pid,
