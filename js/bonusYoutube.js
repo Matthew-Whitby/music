@@ -58,7 +58,7 @@ function WriteNumber(y){
       if(x!=looper-1)v+=",";
    }return v;
 }
-function GetWasutaVidTitles(){
+function GetWasutaVidTitles(callback){
    $.get("https://www.googleapis.com/youtube/v3/channels",{
       part: 'contentDetails',
       id: "UCpz1sUYoIaAwRU5iPJtlHeg",
@@ -79,7 +79,7 @@ function getWasutaPlaylistVids(pid,callback){
       },function(data){
          wnextToken=data.nextPageToken;
          $.each(data.items,function(i,item){
-            console.log(item);
+            console.log(item.snippet.title);
          })
          callback();
       }
