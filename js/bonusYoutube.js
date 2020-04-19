@@ -6,7 +6,7 @@ function GetYoutubeData(w,callback){
    let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
    if(matches)v=matches[1];
    $.getJSON("https://www.googleapis.com/youtube/v3/videos",{
-      key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+      key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
       part:"statistics,snippet",
       id:v
    },function(data){
@@ -34,7 +34,7 @@ function GetYoutubeData(w,callback){
 }
 function GetChannelStats(){
 $.getJSON("https://www.googleapis.com/youtube/v3/channels",{
-   key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+   key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
    part:"statistics",
    id:"UC6YNWTm6zuMFsjqd0PO3G-Q"
 },function(data){
@@ -61,7 +61,7 @@ function GetVidIds(){
    let vidIds;
 alert("Getting vids");
    $.getJSON("https://www.googleapis.com/youtube/v3/playlistItems",{
-      key:"AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw",
+      key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
       part:"snippet",
       playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
       maxResults:vsc
@@ -81,7 +81,7 @@ function GetVidIdsUnlisted(callback){
       maxResults:vsc,
       pageToken:nextToken,
       playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
-      key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
    },function(data){
       nextToken=data.nextPageToken;
       $.each(data.items,function(i,item){
@@ -94,7 +94,7 @@ function GetVidIdsUploads(callback){
 $.get("https://www.googleapis.com/youtube/v3/channels",{
       part: 'contentDetails',
       id: "UC6YNWTm6zuMFsjqd0PO3G-Q",
-      key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
    },function(data){
       pid=data.items[0].contentDetails.relatedPlaylists.uploads;
       getPlaylistVids(pid,()=>callback());
@@ -107,7 +107,7 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       playlistId:pid,
       maxResults:vsc,
       pageToken:nextToken,
-      key:'AIzaSyD6XBI5r8UWTPCtF00EwJOb5ZlxunvxYTw'
+      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
    },function(data){
       nextToken=data.nextPageToken;
       $.each(data.items,function(i,item){
