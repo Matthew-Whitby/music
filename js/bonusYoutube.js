@@ -1,4 +1,5 @@
-var nextToken;
+var nextToken,wnextToken;
+var key="AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0";
 var vsc=10;
 function GetYoutubeData(w,callback){
    let c=document.getElementById("vid_"+w);
@@ -6,7 +7,7 @@ function GetYoutubeData(w,callback){
    let matches=v.match(/^http:\/\/www\.youtube\.com\/.*[?&]v=([^&]+)/i)||v.match(/^http:\/\/youtu\.be\/([^?]+)/i);
    if(matches)v=matches[1];
    $.getJSON("https://www.googleapis.com/youtube/v3/videos",{
-      key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
+      key:key,
       part:"statistics,snippet",
       id:v
    },function(data){
@@ -34,7 +35,7 @@ function GetYoutubeData(w,callback){
 }
 function GetChannelStats(){
 $.getJSON("https://www.googleapis.com/youtube/v3/channels",{
-   key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
+   key:key,
    part:"statistics",
    id:"UC6YNWTm6zuMFsjqd0PO3G-Q"
 },function(data){
@@ -57,11 +58,38 @@ function WriteNumber(y){
       if(x!=looper-1)v+=",";
    }return v;
 }
+function GetWasutaVidTitles(){
+   $.get("https://www.googleapis.com/youtube/v3/channels",{
+      part: 'contentDetails',
+      id: "UCpz1sUYoIaAwRU5iPJtlHeg",
+      key:key
+   },function(data){
+      pid=data.items[0].contentDetails.relatedPlaylists.uploads;
+      getWasutaPlaylistVids(pid,()=>callback());
+   }
+);
+}
+function getWasutaPlaylistVids(pid,callback){
+   $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
+         part:'snippet',
+         playlistId:pid,
+         maxResults:vsc,
+         pageToken:wnextToken,
+         key:key
+      },function(data){
+         wnextToken=data.nextPageToken;
+         $.each(data.items,function(i,item){
+            console.log(item);
+         })
+         callback();
+      }
+   );
+   }
 function GetVidIds(){
    let vidIds;
 alert("Getting vids");
    $.getJSON("https://www.googleapis.com/youtube/v3/playlistItems",{
-      key:"AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0",
+      key:key,
       part:"snippet",
       playlistId:"PL1BxM-1kDL2jDaZWiNUWk7_gOuM_m7MZr",
       maxResults:vsc
@@ -81,7 +109,7 @@ function GetVidIdsUnlisted(callback){
       maxResults:vsc,
       pageToken:nextToken,
       playlistId:"PL1BxM-1kDL2gFu7FrbB4OBZ0qihhxaijt",
-      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
+      key:key
    },function(data){
       nextToken=data.nextPageToken;
       $.each(data.items,function(i,item){
@@ -94,7 +122,7 @@ function GetVidIdsUploads(callback){
 $.get("https://www.googleapis.com/youtube/v3/channels",{
       part: 'contentDetails',
       id: "UC6YNWTm6zuMFsjqd0PO3G-Q",
-      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
+      key:key
    },function(data){
       pid=data.items[0].contentDetails.relatedPlaylists.uploads;
       getPlaylistVids(pid,()=>callback());
@@ -107,7 +135,7 @@ $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
       playlistId:pid,
       maxResults:vsc,
       pageToken:nextToken,
-      key:'AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0'
+      key:key
    },function(data){
       nextToken=data.nextPageToken;
       $.each(data.items,function(i,item){
@@ -123,7 +151,6 @@ function GenerateIds(){
 }
 function GenerateHtml(){
 var c=[];
-//var c=["this song hasn't been worked on in ages","tried improving mixing on vocals, with no success","tried improving mixing on vocals, with some success","tried improving mixing on vocals, with some more success","That's right, it's being remade again","what can I say, it's my favourite song","also throwing in a lot more of my own additions to the song","why did I even try uploading it, I have barely started on it","who knows if this'll get finished. Maybe it'll... disappear","one of my previous favourite songs","possibly somewhat close to being finished, and has so for half a year","far from done","tried to do some 'pop' music","tried even harder","need to fix lower notes","just realised, the videos are going to be ordered backwards so read these upside down!"];
 let parent=document.getElementById("timeline");
 for(i=vidTotal;i<vidIdList.length;i++){
    let upload=document.createElement("section");
