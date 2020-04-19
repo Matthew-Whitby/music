@@ -1,4 +1,5 @@
-var nextToken,wnextToken,prevwToken;
+var nextToken,wnextToken;
+var firstTitle,titledone=false;
 var key="AIzaSyA0Ph2vYzHXLArqDuG70TQ5DvrlRxYvBU0";
 var vsc=10;
 function GetYoutubeData(w,callback){
@@ -70,10 +71,9 @@ function GetWasutaVidTitles(callback){
 );
 }
 function GetTitles(){
-   GetWasutaVidTitles(()=>{if(wnextToken!=prevwToken)GetTitles()});
+   GetWasutaVidTitles(()=>{if(!titledone)GetTitles()});
 }
 function getWasutaPlaylistVids(pid,callback){
-   prevwToken=wnextToken;
    $.get("https://www.googleapis.com/youtube/v3/playlistItems",{
          part:'snippet',
          playlistId:pid,
@@ -83,7 +83,9 @@ function getWasutaPlaylistVids(pid,callback){
       },function(data){
          wnextToken=data.nextPageToken;
          $.each(data.items,function(i,item){
-            console.log(item.snippet.title);
+            if(firstTitle==null||firstTitle=="")firstTitle=item.snippet.title;
+            else if(item.snippet.title==firstTitle)titledone=true;
+            else console.log(item.snippet.title);
          })
          callback();
       }
